@@ -1,5 +1,5 @@
 # Inviz
-An inline and embeddable GraphViz widget for the web. Based on the Graphviz port [viz.js](https://github.com/mdaines/viz.js/). This library utilitizes workers to ensure the page is never blocked.
+An inline and embeddable GraphViz widget for the web. Based on the Graphviz port [Viz.js](https://github.com/mdaines/viz.js/).
 
 # Usage
 Using an embedded script tag:
