@@ -4,14 +4,16 @@ An inline and embeddable GraphViz widget for the web. Based on the Graphviz port
 # Usage
 Using an embedded script tag:
 ```html
-<script src='https://trevorsundberg.github.io/inviz/inviz-lite-1.0.0.js' data-graph='digraph { a -> b }'></script>
+<script src='https://trevorsundberg.github.io/inviz/inviz-lite-1.0.0.js'
+        data-graph='digraph { a -> b }'></script>
 ```
 
 The `data-graph` string takes the dot language.
 
 You may also pass [options](https://github.com/mdaines/viz.js/wiki/API#render-options) into `data-options` as a json string:
 ```html
-<script src='https://trevorsundberg.github.io/inviz/inviz-full-1.0.0.js' data-graph='digraph { a -> b }' data-options='{ "engine": "neato" }'></script>
+<script src='https://trevorsundberg.github.io/inviz/inviz-full-1.0.0.js'
+        data-graph='digraph { a -> b }' data-options='{ "engine": "neato" }'></script>
 ```
 To determine whether to use `inviz-lite` or `inviz-full`, see [here](https://github.com/mdaines/viz.js/wiki/Usage).
 
