@@ -27,11 +27,12 @@ export default workerRelativeURL => {
         workerURL: objectURL
       });
 
-      const graph = script.getAttribute('data-graph');
-      const dataOptions = script.getAttribute('data-options');
+      const url = new URL(window.location.href);
+      const dataGraph = url.searchParams.get('graph') || script.getAttribute('data-graph');
+      const dataOptions = url.searchParams.get('options') || script.getAttribute('data-options');
       const options = dataOptions ? JSON.parse(dataOptions) : undefined;
-      if (graph) {
-        viz.renderSVGElement(graph, options).then(element => {
+      if (dataGraph) {
+        viz.renderSVGElement(dataGraph, options).then(element => {
           div.appendChild(element);
           const toSend = new Event('graphload');
           toSend.div = div;
@@ -42,7 +43,8 @@ export default workerRelativeURL => {
           throw err;
         });
       } else {
-        div.textContent = 'inviz: data-graph attribute not found on script element, e.g. data-graph="digraph { a -> b }"';
+        div.textContent = 'inviz: Must use ?graph=... in the url or add data-graph="..." ' +
+          'attribute to the script element, e.g. data-graph="digraph { a -> b }"';
         throw new Error(div.textContent);
       }
 
