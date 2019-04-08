@@ -36,9 +36,22 @@ The attributes are:
  - `data-options`: A json string described [here](https://github.com/mdaines/viz.js/wiki/API#render-options).
 
 ## Usage as an `iframe`:
-An iframe with sandboxing (be sure to escape reserved characters such as `&`):
+Be sure to escape reserved characters such as `&` `?` `#` etc.
+
+Sandboxed lite version:
 ```html
 <iframe src='https://trevorsundberg.github.io/inviz/inviz-lite-1.0.0.htm?graph=
+digraph
+{
+  a -> b
+}
+' sandbox="allow-scripts"></iframe>
+```
+
+Sandboxed full version:
+```html
+<iframe src='https://trevorsundberg.github.io/inviz/inviz-full-1.0.0.htm
+             ?options={ "engine": "neato" }&graph=
 digraph
 {
   a -> b
