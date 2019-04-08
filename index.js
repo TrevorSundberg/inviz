@@ -1,7 +1,7 @@
 // MIT Licensed by Trevor Sundberg
 import Viz from 'viz.js';
 
-export default workerRelativeURL => {
+export default async workerRelativeURL => {
   const script = document.currentScript;
 
   // Generate a div with a temporary id so we can look it up
@@ -18,37 +18,56 @@ export default workerRelativeURL => {
     }
   }
 
+  function isIframe() {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+
+  const url = new URL(window.location.href);
+  function parameter(name) {
+    if (!isIframe()) {
+      return script.getAttribute(`data-${name}`);
+    }
+    return url.searchParams.get(`inviz-${name}`) || script.getAttribute(`data-${name}`);
+  }
+
+
   const scriptURL = new URL(script.src, window.location.href).href;
   const workerURL = new URL(workerRelativeURL, scriptURL).href;
-  fetch(workerURL).then(response => {
-    response.text().then(text => {
-      const objectURL = URL.createObjectURL(new Blob([text]));
-      const viz = new Viz({
-        workerURL: objectURL
-      });
+  const workerFetch = fetch(workerURL);
 
-      const url = new URL(window.location.href);
-      const dataGraph = url.searchParams.get('graph') || script.getAttribute('data-graph');
-      const dataOptions = url.searchParams.get('options') || script.getAttribute('data-options');
-      const options = dataOptions ? JSON.parse(dataOptions) : undefined;
-      if (dataGraph) {
-        viz.renderSVGElement(dataGraph, options).then(element => {
-          div.appendChild(element);
-          const toSend = new Event('graphload');
-          toSend.div = div;
-          toSend.svg = element;
-          div.dispatchEvent(toSend);
-        }).catch(err => {
-          div.textContent = `inviz: ${err && err.message || err}`;
-          throw err;
-        });
-      } else {
-        div.textContent = 'inviz: Must use ?graph=... in the url or add data-graph="..." ' +
-          'attribute to the script element, e.g. data-graph="digraph { a -> b }"';
-        throw new Error(div.textContent);
-      }
+  const dataGraphUrl = parameter('graph-url');
+  const dataGraph = dataGraphUrl ? await (await fetch(dataGraphUrl)).text() : parameter('graph');
 
-      script.remove();
-    });
+  const workerResponse = await workerFetch;
+  const workerText = await workerResponse.text();
+
+  const objectURL = URL.createObjectURL(new Blob([workerText]));
+  const viz = new Viz({
+    workerURL: objectURL
   });
+
+  const dataOptions = parameter('options');
+  const options = dataOptions ? JSON.parse(dataOptions) : undefined;
+  if (dataGraph) {
+    viz.renderSVGElement(dataGraph, options).then(element => {
+      div.appendChild(element);
+      const toSend = new Event('graphload');
+      toSend.div = div;
+      toSend.svg = element;
+      div.dispatchEvent(toSend);
+    }).catch(err => {
+      div.textContent = `inviz: ${err && err.message || err}`;
+      throw err;
+    });
+  } else {
+    div.textContent = 'inviz: Must use ?graph=... in the url or add data-graph="..." ' +
+      'attribute to the script element, e.g. data-graph="digraph { a -> b }"';
+    throw new Error(div.textContent);
+  }
+
+  script.remove();
 };
