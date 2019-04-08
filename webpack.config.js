@@ -1,5 +1,6 @@
 // MIT Licensed by Trevor Sundberg
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SriPlugin = require('webpack-subresource-integrity');
 const path = require('path');
 const version = '1.0.0';
 
@@ -34,6 +35,9 @@ function createModule(name) {
           removeStyleLinkTypeAttributes: true,
           useShortDoctype: true
         }
+      }),
+      new SriPlugin({
+        hashFuncNames: ['sha512'],
       }),
     ]
   };
