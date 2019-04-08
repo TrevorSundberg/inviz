@@ -33,6 +33,7 @@ digraph
 
 The attributes are:
  - `data-graph`: The dot language.
+ - `data-graph-url`: Alternative url that points to a graph file with the dot language `*.gv`.
  - `data-options`: A json string described [here](https://github.com/mdaines/viz.js/wiki/API#render-options).
 
 ## Usage as an `iframe`:
@@ -60,11 +61,12 @@ digraph
 ```
 
 The url parameters:
- - `graph`: The dot language.
- - `options`: A json string described [here](https://github.com/mdaines/viz.js/wiki/API#render-options).
+ - `inviz-graph`: The dot language.
+ - `inviz-graph-url`: Alternative url that points to a graph file with the dot language `*.gv`.
+ - `inviz-options`: A json string described [here](https://github.com/mdaines/viz.js/wiki/API#render-options).
 
 ## Html / Styling
-The emvbedded `script` will replace itself with a `div`. All attributes that you applied to the `script` (including `id`, `class`, `style`, etc.) will be copied to the `div` and the `script` will be removed. When the graph rendering completes, it produces an `svg` which is then attached under the `div`.
+The embedded `script` will replace itself with a `div`. All attributes that you applied to the `script` (including `id`, `class`, `style`, etc.) will be copied to the `div` and the `script` will be removed. When the graph rendering completes, it produces an `svg` which is then attached under the `div`.
 
 ## Events
 Any `id` given to the `script` will be also given to the generated `div`, therefore you can find the `div` and listen for events.
