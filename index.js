@@ -64,8 +64,7 @@ export default async workerRelativeURL => {
       throw err;
     });
   } else {
-    div.textContent = 'inviz: Must use ?graph=... in the url or add data-graph="..." ' +
-      'attribute to the script element, e.g. data-graph="digraph { a -> b }"';
+    div.textContent = 'inviz: Must use ?inviz-graph=... in the url or add the data-graph="..." attribute to the script element';
     throw new Error(div.textContent);
   }
 

@@ -7,7 +7,7 @@ To determine whether to use `inviz-lite` or `inviz-full`, see [here](https://git
 The lite version (dot only / smaller size):
 ```html
 <script src='https://trevorsundberg.github.io/inviz/inviz-lite-1.0.0.js'
-        integrity="sha256-06JfED/5ypqXPNDXAGK0Hwva9ME801fQoU6unaujX84="
+        integrity="sha256-QovDThk2+wF/x72ecMlxvLg+8D0Pn8L3/+evm9iXf+E="
         crossorigin="anonymous"
         data-graph='
 digraph
@@ -20,7 +20,7 @@ digraph
 The full version (neato/dot etc.):
 ```html
 <script src='https://trevorsundberg.github.io/inviz/inviz-full-1.0.0.js'
-        integrity="sha256-CjoEXvnWKtqRYYwpSLafDcAjOnYxRCYwQeEdj270cqE="
+        integrity="sha256-vdYlSK71imkC88FbMiIa9uZPUlNyZ1W0ydJv2p+pijg="
         crossorigin="anonymous"
         data-options='{ "engine": "neato" }'
         data-graph='
