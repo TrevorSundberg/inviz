@@ -37,7 +37,7 @@ function createModule(name) {
         }
       }),
       new SriPlugin({
-        hashFuncNames: ['sha512'],
+        hashFuncNames: ['sha256'],
       }),
     ]
   };
