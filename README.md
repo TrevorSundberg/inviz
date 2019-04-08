@@ -1,5 +1,5 @@
 # Inviz
-An inline and embeddable GraphViz widget for the web. Based on the GraphViz port [Viz.js](https://github.com/mdaines/viz.js/) by [mdaines](https://github.com/mdaines).
+An inline and embeddable GraphViz widget for the web. Based on the GraphViz port [Viz.js](https://github.com/mdaines/viz.js/) by [mdaines](https://github.com/mdaines). See the [Demo](https://trevorsundberg.github.io/inviz/demo.htm) or see it working live in a [Blog Post](https://motley-coder.com/2019/04/05/inviz-an-inline-graphviz-widget/).
 
 To determine whether to use `inviz-lite` or `inviz-full`, see [here](https://github.com/mdaines/viz.js/wiki/Usage).
 
