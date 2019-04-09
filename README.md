@@ -94,7 +94,7 @@ Removing `/49c12d9a0f1a8865d8d0ee3bc3a343ae6ea63883/demo.gv` and we get:
 
 `https://gist.githubusercontent.com/TrevorSundberg/0d7344511320dd4bdf83f70715da8373/raw`
 
-Therefore the graphs will dynamically update as you update the gist. Obviously you can link to a specific commit if needed.
+Therefore the graphs will dynamically update as you update the Gist (must wait 5 minutes for the GitHub servers to flush the cached raw file). Obviously you can link to a specific commit if needed.
 
 ## Html / Styling
 The embedded `script` will replace itself with a `div`. All attributes that you applied to the `script` (including `id`, `class`, `style`, etc.) will be copied to the `div` and the `script` will be removed. When the graph rendering completes, it produces an `svg` which is then attached under the `div`.
